@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sefazgo="http://www.sefaz.go.gov.br"
+      layout:decorate="~{layout/layout-master}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+</head>
+<body class="bodyPDP">
+    <section layout:fragment="content">
+        <div class="container" id="cadastro">
+            <div th:replace="fragments/alert"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <form method="POST">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <h5><strong>Dados da Agenda</strong></h5>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="unidade">Unidade</label>
+                                        <select id="unidade" class="form-control">
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="servico">Serviço(s)</label>
+                                        <select id="servico" class="form-control">
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <a href="" style="color: green; float: right;">ADD</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <h6><strong>Período</strong></h6>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="dataEntrada">Data Início</label>
+                                        <input type="date" class="form-control" id="dataEntrada" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="dataSaida">Data Fim</label>
+                                        <input type="date" class="form-control" id="dataSaida" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="nome">Dia da Semana</label>
+                                        <br>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">SEG</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">TER</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">QUA</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">QUI</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">SEX</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">SAB</button>&nbsp;
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill">DOM</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="dataEntrada">Hora Inicial</label>
+                                        <input type="time" class="form-control" id="dataEntrada" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="dataSaida">Hora Final</label>
+                                        <input type="time" class="form-control" id="dataSaida" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="salario">Quantidade de Servidores Disponíveis</label>
+                                        <input type="number" class="form-control" id="salario" data-mask="#0"
+                                            data-mask-reverse="true" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <a href="" style="color: green; float: right;">ADD</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="unidade">Tempo Padrão de Atendimento</label>
+                                        <select id="unidade" class="form-control">
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <button type="submit" class="btn btn-secondary btn-lg btn-block">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Dia da Semana</th>
+                                        <th scope="col">Período</th>
+                                        <th scope="col">Qt. Servidores Disponíveis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3" align="center">Nenhum Período adicionado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Serviço(s)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="1" align="center">Nenhum Serviço adicionado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </section>
+</body>
+
+</html>

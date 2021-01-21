@@ -1,0 +1,240 @@
+<html lang="pt" layout:decorate="~{layout.html}">
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+        <div class="container" id="cadastro">
+            <div th:replace="fragments/alert"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <form th:action="@{/projetinhos/salvar}" th:object=${periodoAgendaDto} method="POST">
+                        <button style="display: none;" type="submit" id="submitBtn"></button>
+                        <div class="card" th:object=${agendaServicoDto}>
+                            <div class="card-body">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <h5><strong>Dados da Agenda</strong></h5>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="unidade">Unidade</label>
+                                        <select id="unidade" class="form-control" th:field="*{unidade}"
+                                            th:classappend="${#fields.hasErrors('unidade')} ? 'is-invalid'">
+                                            <option value="">Selecione...</option>
+                                            <option th:each="c : ${unidades}" th:value="${c.id}" th:text="${c.nome}">
+                                                Auxiliar
+                                                Contábil
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{unidade}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="servico">Serviço(s)</label>
+                                        <select id="servico" class="form-control" th:field="*{servico}"
+                                            th:classappend="${#fields.hasErrors('servico')} ? 'is-invalid'">
+                                            <option value="">Selecione...</option>
+                                            <option th:each="c : ${servicos}" th:value="${c.id}" th:text="${c.nome}">
+                                                Auxiliar
+                                                Contábil
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{servico}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <input type="hidden" id="id" th:field="*{id}" />
+                                        <a href="#"
+                                            onclick="document.getElementById('submitBtnAgendaServicoDto').click()"
+                                            style="color: green; float: right;">ADD</a>
+                                        <button style="display: none;" type="submit" name="action"
+                                            value="agendaServicoDto" id="submitBtnAgendaServicoDto"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <h6><strong>Período</strong></h6>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="dataInicio">Data Início</label>
+                                        <input type="date" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+                                            th:classappend="${#fields.hasErrors('dataInicio')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{dataInicio}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="dataFim">Data Fim</label>
+                                        <input type="date" class="form-control" id="dataFim" th:field="*{dataFim}"
+                                            th:classappend="${#fields.hasErrors('dataFim')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{dataFim}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="diaSemana">Dia da Semana</label>
+                                        <br>
+                                        <div class="btn-group" role="group" aria-label="Basic example"
+                                            onclick="document.getElementsByName('diaSemana').forEach(b => {if(b.getAttribute('value') != document.getElementById('diaSemana').getAttribute('value')){ b.style.background = '#6c757d'}})">
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 1);this.style.background = 'red';"
+                                                class="btn btn-secondary btn-sm rounded-pill" value="1"
+                                                name="diaSemana">SEG</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 2);this.style.background = 'red';"
+                                                class="btn btn-secondary btn-sm rounded-pill" name="diaSemana"
+                                                value="2">TER</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 3);this.style.background = 'red';"
+                                                name="diaSemana" value="3"
+                                                class="btn btn-secondary btn-sm rounded-pill">QUA</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 4);this.style.background = 'red';"
+                                                name="diaSemana" value="4"
+                                                class="btn btn-secondary btn-sm rounded-pill">QUI</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 5);this.style.background = 'red';"
+                                                name="diaSemana" value="5"
+                                                class="btn btn-secondary btn-sm rounded-pill">SEX</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 6);this.style.background = 'red';"
+                                                name="diaSemana" value="6"
+                                                class="btn btn-secondary btn-sm rounded-pill">SAB</button>&nbsp;
+                                            <button type="button"
+                                                onclick="document.getElementById('diaSemana').setAttribute('value', 0);this.style.background = 'red';"
+                                                name="diaSemana" value="0"
+                                                class="btn btn-secondary btn-sm rounded-pill">DOM</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="horaInicial">Hora Inicial</label>
+                                        <input type="time" class="form-control" id="horaInicial"
+                                            th:field="*{horaInicial}"
+                                            th:classappend="${#fields.hasErrors('horaInicial')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{horaInicial}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="horaFinal">Hora Final</label>
+                                        <input type="time" class="form-control" id="horaFinal" th:field="*{horaFinal}"
+                                            th:classappend="${#fields.hasErrors('horaFinal')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{horaFinal}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="quantidadeServidores">Quantidade de Servidores
+                                            Disponíveis</label>
+                                        <input type="number" class="form-control" th:field="*{quantidadeServidores}"
+                                            id="quantidadeServidores"
+                                            th:classappend="${#fields.hasErrors('quantidadeServidores')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{quantidadeServidores}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <input type="hidden" id="diaSemana" th:field="*{diaSemana}" />
+                                        <input type="hidden" id="id" th:field="*{id}" />
+                                        <button style="display: none;" type="submit" name="action"
+                                            value="periodoAgendaDto" id="submitBtnPeriodoAgendaDto"></button>
+                                        <a href="#"
+                                            onclick="document.getElementById('submitBtnPeriodoAgendaDto').click()"
+                                            style="color: green; float: right;">ADD</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="tempoAtendimento">Tempo Padrão de Atendimento</label>
+                                        <input type="time" class="form-control" id="tempoAtendimento"
+                                            th:field="*{tempoAtendimento}"
+                                            th:classappend="${#fields.hasErrors('tempoAtendimento')} ? 'is-invalid'" />
+                                        <div class="invalid-feedback">
+                                            <span th:errors="*{tempoAtendimento}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <button type="submit" name="action" value="periodoAgendaDto"
+                                    class="btn btn-secondary btn-lg btn-block">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Dia da Semana</th>
+                                        <th scope="col">Período</th>
+                                        <th scope="col">Qt. Servidores Disponíveis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3" align="center">Nenhum Período adicionado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Serviço(s)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="1" align="center">Nenhum Serviço adicionado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
